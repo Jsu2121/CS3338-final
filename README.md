@@ -1,7 +1,7 @@
 # CS3338-final
 CS 3338 Final Project - Group 17 AI Triage System
 
-Jira Project Link: ...
+Jira Project Link: https://calstatela-cs3338-group17final.atlassian.net/jira/software/projects/SCRUM/summary
 
 **Group Members**
 * Esmeralda Amado
