@@ -3,8 +3,6 @@
 ![AI Triage Workflow](workflow_diagram.png)
 
 flowchart TD
-
-flowchart TD
     U[Healthcare Staff] -->|Open app| A[AI Triage System]
 
     A --> B[Login Screen]
