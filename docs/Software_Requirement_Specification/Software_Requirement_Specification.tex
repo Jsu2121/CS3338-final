@@ -1,25 +1,48 @@
+% group17_SRS.tex  (rename the file to this when you submit)
 \documentclass[12pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[letterpaper,margin=1in]{geometry}
 \usepackage{setspace}
 \usepackage{hyperref}
+\usepackage{array}
 
 \title{Software Requirements Specification (SRS)\\
 \large AI-Powered Triage System}
-\author{CS 3338 -- Group 17\\ [8pt]
+
+\author{
+CS 3338 -- Group\\[8pt]
 Esmeralda Amado\\
 Jessica Parker\\
 Jonathan Su\\
 Nneoma Ajawara\\
 Yvan Michel Kemsseu Yobeu
 }
-\date{November 2025}
+
+\date{December 5, 2025}
 
 \begin{document}
 \maketitle
 \onehalfspacing
+
 \tableofcontents
+\newpage
+
+% ============================================================
+\section{Version Description}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|p{8cm}|c|}
+    \hline
+    \textbf{Version} & \textbf{Description} & \textbf{Date} \\ \hline
+    0.1 & Initial draft of SRS with core features and high-level description. & Nov 28, 2025 \\ \hline
+    0.2 & Added external interface requirements, legal/ethical considerations, and glossary. & Nov 29, 2025 \\ \hline
+    1.0 & Final SRS revision for CS 3338 submission. & Dec 11, 2025 \\ \hline
+  \end{tabular}
+  \caption{SRS Version Description}
+\end{table}
+
 \newpage
 
 % ============================================================
@@ -30,6 +53,14 @@ The purpose of this Software Requirements Specification (SRS) document is to
 describe the functional and non-functional requirements for the AI-Powered
 Triage System. This document will be updated at each snapshot checkpoint to
 reflect the latest progress and system enhancements.
+
+\subsection{Intended Audience}
+This document is intended for:
+\begin{itemize}
+  \item The CS 3338 instructor and teaching staff, for grading and review.
+  \item The development team, who will implement the AI-Powered Triage System.
+  \item Future maintainers, who may extend or update the system and its requirements.
+\end{itemize}
 
 \subsection{Scope}
 The system provides healthcare workers with a secure platform that includes:
@@ -59,11 +90,11 @@ The system provides healthcare workers with a secure platform that includes:
 \subsection{Document Overview}
 This SRS includes:
 \begin{itemize}
-    \item System description
-    \item Functional requirements
-    \item Non-functional requirements
-    \item AI behavior
-    \item Planning sections for Snapshots 1–4
+    \item System description.
+    \item Functional and non-functional requirements.
+    \item External interface requirements.
+    \item Legal and ethical considerations.
+    \item Glossary and snapshot planning.
 \end{itemize}
 
 % ============================================================
@@ -88,7 +119,7 @@ The system is a web application composed of:
 \subsection{Operating Environment}
 \begin{itemize}
     \item Web browser (Chrome, Firefox, Safari, Edge).
-    \item Backend server (Node.js or Python-based).
+    \item Backend server (e.g., Node.js or Python-based).
     \item Database (PostgreSQL or MySQL).
 \end{itemize}
 
@@ -104,6 +135,28 @@ The system is a web application composed of:
     \item AI API availability.
     \item Stable internet connection for users.
     \item Valid healthcare employment verification.
+\end{itemize}
+
+% ============================================================
+\section{External Interface Requirements}
+
+\subsection{User Interface}
+The AI-Powered Triage System will be accessed through a secure web-based user interface:
+\begin{itemize}
+  \item Users log in with verified healthcare credentials.
+  \item The dashboard displays a list of patients, recent visits, and triage summaries.
+  \item Forms allow users to add or update patient visit documentation.
+  \item A chat-style interface allows users to communicate with the AI assistant.
+  \item The interface will be responsive and usable on desktop and tablet devices.
+\end{itemize}
+
+\subsection{Software Interfaces}
+The system will interact with other software components and services:
+\begin{itemize}
+  \item A back-end REST API for creating, reading, updating, and deleting patient records.
+  \item A database management system (e.g., PostgreSQL) that stores patient information and visit history.
+  \item An AI model API (e.g., OpenAI or a similar provider) used to analyze patient data and generate summaries.
+  \item Optional integration points for hospital systems (EHR/EMR) using secure API endpoints, if included in future work.
 \end{itemize}
 
 % ============================================================
@@ -167,27 +220,66 @@ AI assists staff by generating post-visit documentation.
 \subsection{Performance}
 \begin{itemize}
     \item NFR1: Pages shall load within 3 seconds on average.
-    \item NFR2: AI responses shall generate within 5 seconds.
+    \item NFR2: AI responses shall generate within 5 seconds under normal conditions.
 \end{itemize}
 
 \subsection{Security}
 \begin{itemize}
     \item NFR3: All sensitive data must be encrypted.
-    \item NFR4: Passwords stored as hashes.
+    \item NFR4: Passwords shall be stored as secure hashes.
     \item NFR5: Only authenticated users may access patient records.
 \end{itemize}
 
 \subsection{Usability}
 \begin{itemize}
-    \item NFR6: UI shall require minimal training for healthcare staff.
+    \item NFR6: The user interface shall require minimal training for healthcare staff.
     \item NFR7: Information shall be presented clearly and consistently.
 \end{itemize}
 
 \subsection{Reliability}
 \begin{itemize}
-    \item NFR8: System shall handle at least 20 simultaneous users.
-    \item NFR9: AI must not produce harmful medical claims.
+    \item NFR8: The system shall handle at least 20 simultaneous users.
+    \item NFR9: AI responses shall be monitored to avoid harmful medical claims.
 \end{itemize}
+
+% ============================================================
+\section{Legal and Ethical Considerations}
+
+\subsection{Data Storage and Privacy}
+\begin{itemize}
+  \item Patient data must be stored securely with access restricted to authorized healthcare staff.
+  \item All data in transit between the user interface, back end, and AI service should be encrypted (e.g., HTTPS/TLS) in a production environment.
+  \item The system should follow HIPAA-like principles for handling protected health information, even if full legal compliance is out of scope for this class project.
+  \item Audit logs should track who accessed or modified patient records.
+\end{itemize}
+
+\subsection{Legal and Ethical Issues}
+\begin{itemize}
+  \item Users must be informed that the AI assistant is a decision-support tool, not a replacement for medical judgment.
+  \item Any AI-generated triage suggestion must be reviewed and confirmed by a qualified healthcare professional.
+  \item Data used to train or evaluate the AI should be de-identified where possible to protect patient privacy.
+  \item The team should consider bias in AI outputs and avoid using the system to make fully automated life-critical decisions.
+\end{itemize}
+
+% ============================================================
+\section{Glossary}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|p{9cm}|}
+    \hline
+    \textbf{Acronym} & \textbf{Definition} \\ \hline
+    AI & Artificial Intelligence. \\ \hline
+    UI & User Interface. \\ \hline
+    API & Application Programming Interface. \\ \hline
+    DB & Database that stores patient and visit data. \\ \hline
+    SRS & Software Requirements Specification. \\ \hline
+    SDD & Software Design Document. \\ \hline
+  \end{tabular}
+  \caption{Glossary of Acronyms}
+\end{table}
+
+\newpage
 
 % ============================================================
 \section{Snapshots (Planned Updates)}
@@ -226,6 +318,7 @@ AI assists staff by generating post-visit documentation.
 
 % ============================================================
 \section{Appendix}
-This document will be updated continuously during development and at each snapshot stage.
+This document will be updated at each snapshot stage to reflect the current
+state of the AI-Powered Triage System and its requirements.
 
 \end{document}
