@@ -1,3 +1,9 @@
+# AI Triage Workflow
+
+![AI Triage Workflow](workflow%20diagram.png)
+
+flowchart TD
+
 flowchart TD
     U[Healthcare Staff] -->|Open app| A[AI Triage System]
 
