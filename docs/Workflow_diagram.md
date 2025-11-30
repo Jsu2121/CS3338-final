@@ -1,6 +1,6 @@
 # AI Triage Workflow
 
-![AI Triage Workflow](workflow%20diagram.png)
+![AI Triage Workflow](workflow_diagram.png)
 
 flowchart TD
 
