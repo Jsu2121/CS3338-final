@@ -1,0 +1,199 @@
+% group17_SDD.tex
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{array}
+
+\title{Software Design Document (SDD)\\
+\large AI-Powered Triage System}
+
+\author{
+CS 3338 -- Group 17\\[8pt]
+Esmeralda Amado\\
+Jessica Parker\\
+Jonathan Su\\
+Nneoma Ajawara\\
+Yvan Michel Kemsseu Yobeu
+}
+
+\date{December 2025}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Version Description}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|p{8cm}|c|}
+    \hline
+    \textbf{Version} & \textbf{Description} & \textbf{Date} \\ \hline
+    0.1 & Initial creation of SDD layout and core system architecture. & Nov 30, 2025 \\ \hline
+    0.2 & Added UI design, database overview, and workflow explanation. & Dec 1, 2025 \\ \hline
+    1.0 & Final version for Snapshot 1 submission. & Dec 5, 2025 \\ \hline
+  \end{tabular}
+  \caption{SDD Version Description}
+\end{table}
+
+\newpage
+
+% ============================================================
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this Software Design Document (SDD) is to provide the technical
+design and system architecture for the AI-Powered Triage System. This document
+serves as a guide for developers, testers, and future team members.
+
+\subsection{Intended Audience}
+This document is intended for:
+\begin{itemize}
+    \item The CS 3338 course instructor and graders.
+    \item Developers responsible for implementing system components.
+    \item Testers working with TestRail and Jira.
+    \item Future maintainers of the AI triage platform.
+\end{itemize}
+
+\subsection{System Overview}
+The AI-Powered Triage System is a web-based healthcare tool that allows
+authorized medical staff to:
+\begin{itemize}
+    \item Log in securely.
+    \item Access patient demographic and historical visit information.
+    \item Receive AI-generated summaries and triage recommendations.
+    \item Complete medical visit documentation assisted by AI.
+\end{itemize}
+
+This SDD describes the structure and behavior of the system and all major components.
+
+% ============================================================
+\section{System Architecture}
+
+\subsection{System Workflow}
+The high-level workflow of the system is as follows:
+
+\begin{enumerate}
+    \item The user logs in through the secure authentication portal.
+    \item The front-end client requests patient data from the back-end API.
+    \item Data is retrieved from the database and displayed to the user.
+    \item When the user interacts with the AI, the back-end sends relevant
+    patient information to the AI model.
+    \item The AI returns a summary or triage recommendation.
+    \item The user updates the patient's visit history or completes forms.
+    \item The system stores updated visit documentation in the database.
+\end{enumerate}
+
+\subsection{Architecture Diagram Description}
+The system contains the following functional layers:
+
+\begin{itemize}
+    \item \textbf{Client-Side (Front-End)}  
+    A web interface built using HTML/CSS/JavaScript or a front-end framework
+    such as React or Vue.
+
+    \item \textbf{Server-Side (Back-End)}  
+    A REST API built using Python Flask, FastAPI, or Node.js. Handles:
+    \begin{itemize}
+        \item User authentication
+        \item Database interactions
+        \item Passing data to/from the AI model
+    \end{itemize}
+
+    \item \textbf{Database Layer}  
+    Stores patient demographic information and historic visit notes using a
+    relational database (PostgreSQL or MySQL).
+
+    \item \textbf{AI Service Layer}  
+    Connects to an AI model such as OpenAI GPT or a local machine learning
+    model trained on healthcare text.
+\end{itemize}
+
+% ============================================================
+\section{User Interface Design}
+
+\subsection{Overview of User Interface}
+The user interface will consist of the following pages:
+
+\begin{itemize}
+    \item \textbf{Login Page}: Allows verified healthcare staff to authenticate.
+    \item \textbf{Dashboard}: Displays a list of patients, recent activity,
+    and quick links.
+    \item \textbf{Patient Profile Page}: Shows demographics and visit history.
+    \item \textbf{AI Chat Interface}: Allows staff to ask triage-related questions.
+    \item \textbf{Visit Documentation Form}: A structured form for completing
+    patient encounter records.
+\end{itemize}
+
+\subsection{Database Design Overview}
+The database will contain the following example tables:
+
+\begin{itemize}
+    \item \textbf{Users}  
+    Columns: user\_id, name, email, role, password\_hash
+
+    \item \textbf{Patients}  
+    Columns: patient\_id, name, age, gender, date\_of\_birth
+
+    \item \textbf{Visits}  
+    Columns: visit\_id, patient\_id, visit\_date, condition, treatment, outcome
+
+    \item \textbf{ChatLogs} (optional)  
+    Columns: chat\_id, user\_id, patient\_id, timestamp, message
+\end{itemize}
+
+\subsection{Using the System}
+Users interact with the system by:
+\begin{itemize}
+    \item Logging in with secure credentials.
+    \item Selecting a patient record from the dashboard.
+    \item Opening the AI assistant to obtain summary information.
+    \item Completing triage documentation with AI-assisted text suggestions.
+\end{itemize}
+
+\subsection{Optional UI Screenshots}
+Because the system is still in Snapshot 1, UI screenshots may not be final.  
+Screenshots will be added as development progresses.
+
+% ============================================================
+\section{Glossary}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|p{9cm}|}
+    \hline
+    \textbf{Acronym} & \textbf{Definition} \\ \hline
+    AI & Artificial Intelligence. \\ \hline
+    UI & User Interface. \\ \hline
+    API & Application Programming Interface. \\ \hline
+    DB & Database storing patient and visit data. \\ \hline
+    SRS & Software Requirements Specification. \\ \hline
+    SDD & Software Design Document. \\ \hline
+  \end{tabular}
+  \caption{Glossary of Acronyms}
+\end{table}
+
+% ============================================================
+\section{References}
+
+\begin{itemize}
+    \item CS 3338 Final Project Instructions (Canvas).
+    \item Overleaf Documentation: \url{https://www.overleaf.com/learn}
+    \item PostgreSQL Documentation: \url{https://www.postgresql.org/docs/}
+    \item HIPAA Overview: \url{https://www.hhs.gov/hipaa/}
+\end{itemize}
+
+% ============================================================
+\section{Appendix}
+
+This document represents Version 1.0 for Snapshot 1 and will be updated as the
+AI-Powered Triage System evolves through additional snapshots.
+
+\end{document}
