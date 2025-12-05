@@ -1,0 +1,5 @@
+Notes about the Testrail test run snapshots
+
+
+Link to the TestRail site:
+https://csulacs3338group17final.testrail.io/index.php?/dashboard
