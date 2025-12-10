@@ -42,9 +42,3 @@
 - Notes section has Save + Cancel buttons
 - Back to Dashboard button at bottom
 
----
-
-## Mobile Optimizations (Optional)
-- Navigation becomes stacked vertically
-- Tables convert to list-style cards
-- Buttons become full-width
