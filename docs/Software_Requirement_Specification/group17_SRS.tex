@@ -1,0 +1,274 @@
+% group17_SRS.tex  
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{array}
+
+\title{Software Requirements Specification (SRS)\\
+\large AI-Powered Triage System}
+
+\author{
+CS 3338 -- Group 17\\[8pt]
+Esmeralda Amado\\
+Jessica Parker\\
+Jonathan Su\\
+Nneoma Ajawara\\
+Yvan Michel Kemsseu Yobeu
+}
+
+\date{December 5, 2025}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Version Description}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|p{8cm}|c|}
+    \hline
+    \textbf{Version} & \textbf{Description} & \textbf{Date} \\ \hline
+
+    1.0 & Initial SRS created for Snapshot 1. Includes purpose, scope, high-level system overview, and basic functional requirements. & Nov 28, 2025 \\ \hline
+
+    2.0 & Updated for Snapshot 2. Added external interface requirements, expanded functional and non-functional requirements, and added legal/ethical considerations and glossary entries. & Nov 29, 2025 \\ \hline
+
+    3.0 & Updated for Snapshot 3. Refined requirements to match early implementation, added system feature descriptions, and clarified performance/security expectations. & Dec 5, 2025 \\ \hline
+
+  \end{tabular}
+  \caption{SRS Version Description}
+\end{table}
+
+\newpage
+
+% ============================================================
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this Software Requirements Specification (SRS) document is to
+describe the functional and non-functional requirements for the AI-Powered
+Triage System. This document will be updated at each snapshot checkpoint to
+reflect the latest progress and system enhancements.
+
+\subsection{Intended Audience}
+This document is intended for:
+\begin{itemize}
+  \item CS 3338 instructor and teaching staff.
+  \item Developers implementing the AI-Powered Triage System.
+  \item Future maintainers extending system features or requirements.
+\end{itemize}
+
+\subsection{Scope}
+The system provides healthcare workers with a secure platform that includes:
+\begin{itemize}
+    \item A login system for verified healthcare staff.
+    \item Access to patient demographics and medical history.
+    \item An AI assistant capable of summarizing patient information.
+    \item The ability to update and store new visit notes.
+    \item AI-assisted documentation support.
+\end{itemize}
+
+\subsection{Definitions and Acronyms}
+\begin{itemize}
+    \item \textbf{AI} — Artificial Intelligence.
+    \item \textbf{User} — Verified healthcare staff.
+    \item \textbf{Database} — Stores patient demographic and visit history.
+    \item \textbf{Snapshot} — Project development milestone.
+\end{itemize}
+
+\subsection{References}
+\begin{itemize}
+    \item CS 3338 Final Project Instructions.
+    \item HIPAA documentation (conceptual reference only).
+\end{itemize}
+
+\subsection{Document Overview}
+This SRS includes:
+\begin{itemize}
+    \item Overall system description.
+    \item Functional and non-functional requirements.
+    \item External interface requirements.
+    \item Legal and ethical considerations.
+    \item Glossary and snapshot plan.
+\end{itemize}
+
+% ============================================================
+\section{Overall Description}
+
+\subsection{Product Perspective}
+The system is a web application composed of:
+\begin{itemize}
+    \item A front-end interface for interacting with patients and the AI.
+    \item A secure login portal.
+    \item A back-end API for handling requests.
+    \item A database storing patient information.
+    \item An integrated AI module assisting medical staff.
+\end{itemize}
+
+\subsection{User Classes and Characteristics}
+\begin{itemize}
+    \item \textbf{Healthcare Staff}: Must be authenticated; understands clinical workflow.
+    \item \textbf{System Administrator}: Manages permissions and configuration.
+\end{itemize}
+
+\subsection{Operating Environment}
+\begin{itemize}
+    \item Web browser (Chrome, Firefox, Edge, Safari)
+    \item Backend server (Node.js or Python)
+    \item Database (PostgreSQL or MySQL)
+\end{itemize}
+
+\subsection{Design and Implementation Constraints}
+\begin{itemize}
+    \item Restricted timeline due to academic semester.
+    \item HIPAA compliance not fully implementable.
+    \item AI features must be explainable.
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+    \item AI API availability.
+    \item Stable internet connection.
+    \item Valid healthcare staff authentication.
+\end{itemize}
+
+% ============================================================
+\section{External Interface Requirements}
+
+\subsection{User Interface}
+Users access the system through a secure web interface:
+\begin{itemize}
+  \item Login page with username/password fields.
+  \item Dashboard with patient search and recent activity.
+  \item Patient details page with visit history and notes.
+  \item “Generate AI Summary” button.
+  \item Chat-style interface for AI assistance.
+\end{itemize}
+
+\subsection{Software Interfaces}
+\begin{itemize}
+  \item REST API for CRUD operations.
+  \item Database storing patient and visit history.
+  \item AI API for summarizing patient data.
+\end{itemize}
+
+% ============================================================
+\section{System Features}
+
+\subsection{Feature F1: User Authentication}
+\textbf{Description:} Ensures only authorized staff can access patient data.
+
+\textbf{Functional Requirements:}
+\begin{itemize}
+    \item F1.1 System shall allow login using username and password.
+    \item F1.2 Invalid login attempts must show an error.
+\end{itemize}
+
+\subsection{Feature F2: Patient Record Management}
+\begin{itemize}
+    \item F2.1 Search patients by name or ID.
+    \item F2.2 View demographics and visit history.
+    \item F2.3 Add or update visit notes.
+\end{itemize}
+
+\subsection{Feature F3: AI-Assisted Triage}
+\begin{itemize}
+    \item F3.1 AI shall summarize medical history.
+    \item F3.2 Staff must review AI output before saving.
+\end{itemize}
+
+\subsection{Feature F4: Visit Documentation Assistance}
+\begin{itemize}
+    \item F4.1 AI shall help complete structured visit forms.
+    \item F4.2 Final documentation must be editable before submitting.
+\end{itemize}
+
+% ============================================================
+\section{Non-Functional Requirements}
+
+\subsection{Performance}
+\begin{itemize}
+    \item Pages should load within 3 seconds.
+    \item AI responses should return in under 5 seconds.
+\end{itemize}
+
+\subsection{Security}
+\begin{itemize}
+    \item Passwords must be hashed.
+    \item All sensitive data must be protected.
+\end{itemize}
+
+\subsection{Usability}
+\begin{itemize}
+    \item Interface should require minimal training.
+    \item Layout must be clear and consistent.
+\end{itemize}
+
+\subsection{Reliability}
+\begin{itemize}
+    \item Must support at least 20 concurrent users.
+\end{itemize}
+
+% ============================================================
+\section{Legal and Ethical Considerations}
+
+\subsection{Data Storage and Privacy}
+\begin{itemize}
+  \item Patient data must be stored securely.
+  \item Only authenticated users may view or edit records.
+\end{itemize}
+
+\subsection{Ethical Issues}
+\begin{itemize}
+  \item AI suggestions are not medical advice.
+  \item Staff must review AI-generated content.
+\end{itemize}
+
+% ============================================================
+\section{Glossary}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|p{9cm}|}
+    \hline
+    \textbf{Term} & \textbf{Definition} \\ \hline
+    AI & Artificial Intelligence \\ \hline
+    UI & User Interface \\ \hline
+    API & Application Programming Interface \\ \hline
+    DB & Database \\ \hline
+  \end{tabular}
+\end{table}
+
+% ============================================================
+\section{Snapshots}
+
+\subsection{Snapshot 1}
+\begin{itemize}
+    \item Established basic project scope.
+    \item Created initial SRS and SDD structure.
+    \item Outlined login and patient record workflow.
+\end{itemize}
+
+\subsection{Snapshot 2}
+\begin{itemize}
+    \item Added database structure.
+    \item Expanded external interface requirements.
+    \item Clarified AI module role.
+\end{itemize}
+
+\subsection{Snapshot 3}
+\begin{itemize}
+    \item Updated requirements to match early implementation.
+    \item Added new details for AI assistant interactions.
+    \item Refined non-functional requirements.
+\end{itemize}
+
+\end{document}
