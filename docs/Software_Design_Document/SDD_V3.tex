@@ -1,0 +1,180 @@
+\documentclass[12pt]{article}
+%---- packages -----
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+% \usepackage{array}
+% \usepackage{longtable}
+% \usepackage{titling}
+
+%---- page setup -----
+\geometry{a4paper, margin=1in}
+\pagestyle{fancy}
+\fancyhead[L]{AI-Powered Triage System - System Design Document (SDD)
+ V.3}
+\fancyhead[R]{Page \thepage}
+\fancyfoot[C]{}
+
+%---- title -----
+\title{AI-Powered Triage System \\
+System Design Document (SDD) \\
+Version 3}
+\author{
+Group 17\\
+Esmeralda Amado\\
+Jessica Parker\\
+Jonathan Su\\
+Nneoma Ajawara\\
+Yvan Michel Kemsseu Yobeu
+}
+
+\date{December 2025}
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+    \thispagestyle{empty}
+\end{titlepage}
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+%---------------------------
+\section*{Version Description}
+\addcontentsline{toc}{section}{Version Description}
+
+\begin{table}
+    \begin{tabular}{|c|p{8cm}|c|}
+    \hline
+    \textbf{Version} & \textbf{Description} & \textbf{Date Added} \\ \hline
+    1.0 & Final version for Start Snapshot submission. & 12/05/2025 \\ \hline
+    2.0 & Added full database design, updated workflow, added CRUD operations and implemented core triage features. & 12/08/2025 \\ \hline
+    3.0 & Added AI workflow, updated component breakdown to include AI service integration, and expanded UI design to show AI-generated recommendations. & 12/10/2025 \\ \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+
+%--------------------------
+\section{Introduction}
+
+\subsection{Purpose}
+Version 3 of this Software Design Document (SDD) describes
+the AI components that generate summaries and triage recommendations based on patients' information. The database and workflow have also been updated to support interactions with the AI model.
+
+\subsection{Intended Audience}
+This document is intended for:
+\begin{itemize}
+    \item The instructor and the graders of the CS 3338 course.
+    \item Developers responsible for implementing system components.
+    \item Testers working with TestRail and Jira.
+    \item Future maintainers/contributors of the system, in later snapshots.
+\end{itemize}
+
+\subsection{System Overview}
+The AI-Powered Triage System now includes a defined database structure and a functional workflow for:
+\begin{itemize}
+    \item Storing patient information.
+    \item Retrieving patient information.
+    \item Displaying AI output on UI.
+\end{itemize}
+
+\newpage
+
+%--------------------------
+\section{System Architecture}
+
+\subsection{Workflow}
+The workflow of the AI Triage System has been updated to incorporate the AI model as follows:
+\begin{enumerate}
+    \item The user logs in through the secure authentication portal.
+    \item The front-end client requests patient data from the back-end API.
+    \item The user selects a patient and enters visit information such as symptoms.
+    \item The back-end stores the visit information in the database.
+    \item The back-end sends the relevant visit and patient information to the AI model.
+    \item The AI model returns a summary or triage recommendation.
+    \item The front-end displays the AI-generated recommendation to the user.
+    \item The user may update or finalize the visit record.
+    \item All updates are stored in the database for future reference.
+\end{enumerate}
+
+\subsection{Component Breakdown}
+The AI Triage System will consist of the following components:
+\begin{itemize}
+    \item \textbf{Client-Side (Front-End)}
+    A web interface built using HTML/CSS/JavaScript or a front-end framework like React.
+    
+    \item \textbf{Server-Side (Back-End)}
+    A REST API built using Python Flask, FastAPI, or Node.js for:
+    \begin{itemize}
+        \item User authentication
+        \item Database interactions
+        \item Passing data to/from the AI model
+    \end{itemize}
+    
+    \item \textbf{Database Layer}
+    A relational database (MySQL) has been defined for storing patient demographics and visit records. The database doesn't interact with AI yet, but supports basic database organization and retrieval.
+    
+    \item \textbf{AI Service Layer}
+    The AI Service Layer receives input such as symptoms and visit notes and returns 
+    summaries or triage recommendations. The AI model may be an external API like OpenAI GPT or a locally hosted machine learning model.
+\end{itemize}
+
+\newpage
+
+%--------------------------
+\section{User Interface}
+
+\subsection{How to Use}
+Users will be able to interact with the system, using the following components:
+\begin{itemize}
+    \item \textbf{Patient Profile Page}: Verified healthcare personnel can also enter visit notes, and view their visit history.
+    \item \textbf{Dashboard}: To display a list of patients, recent activity, and quick links.
+    \item \textbf{Visit Documentation Form}: A structured form for healthcare personnel to complete patient encounter records. 
+    \item \textbf{AI Recommendation Panel}: Displays AI-generated summaries or triage recommendations based on submitted visit information.
+\end{itemize}
+
+\subsection{Database Design Overview}
+We're considering extending the Visits table with a column for ai-generated recommended output, along with the following tables:
+\begin{itemize}
+    \item \textbf{Staff}
+    Columns: staff\_id, name, email, role, password\_hash
+    \item \textbf{Patients}
+    Columns: patient\_id, name, age, sex, date\_of\_birth
+    \item \textbf{Visits (with possible updates)}
+    Columns: visit\_id, patient\_id, visit\_date, condition, treatment, outcome, ai\_recommendation
+\end{itemize}
+
+\subsection{UI Screenshots}
+Screenshots of the tentative UI design may be added in later versions.
+
+\newpage
+
+%--------------------------
+\section{Glossary}
+% \addcontentsline{toc}{section}{Glossary}
+\begin{description}
+    \item[\textbf{AI}] - Artificial Intelligence
+    \item[\textbf{API}] - Application Programming Interface
+    \item[\textbf{DB}] - Database
+    \item[\textbf{SDD}] - System Design Document
+    \item[\textbf{UI}]- User Interface
+\end{description}
+
+\newpage
+
+%--------------------------
+\section{References}
+Current references:
+\begin{itemize}
+    \item CS 3338 Lab 14 Instructions (Canvas).
+    \item CS 3338 Final Project Instructions (Canvas).
+    \item Example Final Projects From Past Group (Github).
+    \item Overleaf Documentation: \url{https://www.overleaf.com/learn}
+    \item HIPAA Overview: \url{https://www.hhs.gov/hipaa/}
+\end{itemize}
+
+\end{document}
