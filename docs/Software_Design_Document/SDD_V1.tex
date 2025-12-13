@@ -11,13 +11,14 @@
 %---- page setup -----
 \geometry{a4paper, margin=1in}
 \pagestyle{fancy}
-\fancyhead[L]{AI-Powered Triage System - System Design Document (SDD)}
+\fancyhead[L]{AI-Powered Triage System - System Design Document (SDD) V.1}
 \fancyhead[R]{Page \thepage}
 \fancyfoot[C]{}
 
 %---- title -----
 \title{AI-Powered Triage System \\
-System Design Document (SDD)}
+System Design Document (SDD) \\
+Version 1}
 \author{
 Group 17\\
 Esmeralda Amado\\
@@ -65,21 +66,21 @@ The purpose of this Software Design Document (SDD) is to outline the technical d
 \subsection{Intended Audience}
 This document is intended for:
 \begin{itemize}
-    \item The CS 3338 course instructor and graders.
+    \item The instructor and graders of the CS 3338 course.
     \item Developers responsible for implementing system components.
     \item Testers working with TestRail and Jira.
     \item Future maintainers/contributors of the system, in later snapshots.
 \end{itemize}
 
 \subsection{System Overview}
-The AI-Powered Triage System is a web-based healthcare tool that allows  authorized medical staff to:
+The AI-Powered Triage System is a web-based healthcare tool that allows  authorized medical personnel to:
 \begin{itemize}
     \item Log in securely.
-    \item Access patient demographic and historical visit information.
-    \item Receive AI-generated summaries and triage recommendations.
+    \item Access demographic and historical patient visit information.
+    \item Receive AI-generated summaries and triage recommendations in future version systems. 
     \item Complete medical visit documentation assisted by AI.
 \end{itemize}
-This SDD describes the structure and behavior of the sytem and all major components.
+This SDD describes the structure and behavior of the system and all major components.
 
 \newpage
 
@@ -92,8 +93,7 @@ The workflow of the AI Triage System is as follows:
     \item The user logs in through the secure authentication portal.
     \item The front-end client requests patient data from the back-end API.
     \item Data is retrieved from the database and displayed to the user.
-    \item When the user interacts with the AI, the back-end sends relevant patient information to the AI model.
-    \item The AI returns a summary or triage recommendation.
+    \item The user views patient information and navigates through UI.
     \item The user updates the patient's visit history or completes forms.
     \item The system stores updated visit documentation in the database.
 \end{enumerate}
@@ -109,17 +109,17 @@ The AI Triage System will consist of the following components:
     \begin{itemize}
         \item User authentication
         \item Database interactions
-        \item Passing data to/from the AI model
+        \item Passing data to/from the AI model in future versions
     \end{itemize}
     
     \item \textbf{Database Layer}
     Will store patient demographic information and historic visit notes using a relational database (MySQL).
     
-    \item \textbf{AI Service Layer}
-    Connects to an AI model such as OpenAI GPT or a local machine learning model trained on healthcare text.
+    \item \textbf{AI Service Layer (Planned)}
+    Connects to an AI model such as OpenAI GPT or a local machine learning model trained on healthcare text in future versions.
 \end{itemize}
 
-\new page
+\newpage
 
 %--------------------------
 \section{User Interface}
@@ -127,10 +127,9 @@ The AI Triage System will consist of the following components:
 \subsection{How to Use}
 Users will be able to interact with the system, using the following components:
 \begin{itemize}
-    \item \textbf{Main UI Pages}: Verified healthcare staff can authenticate themselves through the Login Page. They can also view patients' demographics and visit history through the Patient Profile Page.
-    \item \textbf{Dashboard}: To display list of patients, recent activity, and quick links.
-    \item \textbf{AI Chat Interface}: Allows staff to ask triage-related questions.
-    \item \textbf{Visit Documentation Form}: A structured form for healthcare staff to complete patient encouter records. 
+    \item \textbf{Main UI Pages}: Verified healthcare personnel can authenticate themselves through the Login Page. They can also view patients' demographics and visit history through the Patient Profile Page.
+    \item \textbf{Dashboard}: To display a list of patients, recent activity, and quick links.
+    \item \textbf{Visit Documentation Form}: A structured form for healthcare personnel to complete patient encounter records. 
 \end{itemize}
 
 \subsection{Database Design Overview}
